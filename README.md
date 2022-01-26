@@ -1,2 +1,2 @@
 # Projetos DIO
-Esses projetos foram realizados durante o bootcamp da GFT
+Esses projetos foram realizados durante o bootcamp de JAVA da DIO
