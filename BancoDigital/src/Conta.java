@@ -1,5 +1,6 @@
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Scanner;
 
 public abstract class Conta implements iConta {
 
@@ -13,7 +14,7 @@ public abstract class Conta implements iConta {
     protected Cliente cliente;
     protected Banco banco;
 
-    public Conta(Cliente cliente, Banco banco){
+    public Conta(Cliente cliente, Banco banco) {
         this.agencia = Conta.AGENCIA_PADRAO;
         this.numeroConta = SEQUENCIAL++;
         this.cliente = cliente;
@@ -44,6 +45,74 @@ public abstract class Conta implements iConta {
         divida += valorDiv;
     }
 
+    public void fazDeposito(String resp) {
+        Scanner scan = new Scanner(System.in);
+
+        switch (resp.toUpperCase(Locale.ROOT)) {
+            case "S":
+                System.out.println("Digite o valor do depósito:");
+                depositar(scan.nextDouble());
+                break;
+            case "N":
+                depositar(0);
+                break;
+            default:
+                System.out.println("Caractéres não permitido");
+                System.exit(0);
+        }
+    }
+
+    public void fazSaque(String resp) {
+        Scanner scan = new Scanner(System.in);
+
+        switch (resp.toUpperCase(Locale.ROOT)) {
+            case "S":
+                System.out.println("Digite o valor do saque:");
+                sacar(scan.nextDouble());
+                break;
+            case "N":
+                sacar(0);
+                break;
+            default:
+                System.out.println("Caractéres não permitido");
+                System.exit(0);
+        }
+    }
+
+    public void fazTransferencia(String resp, Conta contaDestino) {
+        Scanner scan = new Scanner(System.in);
+
+        switch (resp.toUpperCase(Locale.ROOT)) {
+            case "S":
+                System.out.println("Digite o valor da transferência:");
+                transferir(scan.nextDouble(), contaDestino);
+                break;
+            case "N":
+                transferir(0, contaDestino);
+                break;
+            default:
+                System.out.println("Caractéres não permitido");
+                System.exit(0);
+        }
+    }
+
+    public void fazEmprestimo(String resp) {
+        Scanner scan = new Scanner(System.in);
+
+        switch (resp.toUpperCase(Locale.ROOT)) {
+            case "S":
+                System.out.println("Digite o valor do empréstimo: ");
+                pegarEmprestimo(scan.nextDouble());
+                break;
+            case "N":
+                pegarEmprestimo(0);
+                break;
+            default:
+                System.out.println("Caractéres não permitido");
+                System.exit(0);
+        }
+    }
+
 
     public int getAgencia() {
         return agencia;
@@ -62,10 +131,10 @@ public abstract class Conta implements iConta {
     }
 
     protected void imprimirInfosComuns() {
-        Locale localeBR = new Locale("pt","BR");
+        Locale localeBR = new Locale("pt", "BR");
         NumberFormat dinheiro = NumberFormat.getCurrencyInstance(localeBR);
 
-        System.out.println( "============= " + banco.getNome() + " =============");
+        System.out.println("============= " + banco.getNome() + " =============");
         System.out.println("\n");
         System.out.println("Titular: " + cliente.getNome());
         System.out.println("Agencia: " + agencia);
