@@ -57,6 +57,5 @@ public class Main {
         System.out.println("XP: " + dev2.calcularTotalXp());
 
 
-
     }
 }
