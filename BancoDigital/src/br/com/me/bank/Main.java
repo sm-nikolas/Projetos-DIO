@@ -2,7 +2,6 @@ package br.com.me.bank;
 
 import br.com.me.bank.model.*;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
